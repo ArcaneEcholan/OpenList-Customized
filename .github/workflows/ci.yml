@@ -1,14 +1,20 @@
+# Build the monorepo binary on main, and publish a GitHub Release when a version tag is pushed.
 name: CI
 
 on:
+  # Validate every push to main by producing ./openlist-linux-amd64.
   push:
     branches: [main]
+    # Version tags (e.g. v1.0.0) also build, then create a Release with the binary attached.
     tags: ["v*"]
+  # Allow manual runs from the Actions tab (useful for debugging CI without a new commit).
   workflow_dispatch:
 
+# Default token scope: read-only. The job overrides this to write when creating releases.
 permissions:
   contents: read
 
+# Cancel an in-progress run for the same branch/tag when a newer push arrives.
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -16,34 +22,48 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # contents:write is required so the tag path can create/update a GitHub Release.
     permissions:
       contents: write
 
     steps:
+      # Fetch the monorepo itself (build.sh, .gitmodules, workflow files).
+      # submodules:false — we intentionally do NOT let checkout clone submodules yet,
+      # because .gitmodules uses git@github.com SSH URLs, which fail on Actions runners
+      # without an SSH deploy key. The next step clones them over HTTPS instead.
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Submodule URLs in .gitmodules use SSH; rewrite to HTTPS for Actions.
           submodules: false
 
+      # Materialize OpenList + OpenList-Frontend at the commits pinned by the parent repo.
+      # 1) Rewrite SSH GitHub URLs to HTTPS so anonymous clone works in CI.
+      # 2) sync — refresh submodule URLs from .gitmodules after the rewrite.
+      # 3) update --init --recursive — clone missing submodules and check out the pinned SHAs.
       - name: Checkout submodules
         run: |
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           git submodule sync --recursive
           git submodule update --init --recursive
 
+      # Install the Go toolchain used by OpenList (matches upstream release CI: 1.27.1).
+      # Caches module downloads using OpenList/go.sum so subsequent runs are faster.
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
           go-version: "1.27.1"
           cache-dependency-path: OpenList/go.sum
 
+      # Install pnpm (packageManager in OpenList-Frontend/package.json is pnpm@11.25.0).
+      # run_install:false — dependency install is deferred to build.sh / a later pnpm use.
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
         with:
           version: 11.25.0
           run_install: false
 
+      # Install Node.js for the Vite/Solid frontend build (matches upstream frontend CI).
+      # Enables pnpm store caching keyed off OpenList-Frontend/pnpm-lock.yaml.
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -51,11 +71,17 @@ jobs:
           cache: pnpm
           cache-dependency-path: OpenList-Frontend/pnpm-lock.yaml
 
+      # Full product build via monorepo build.sh:
+      #   frontend (pnpm build) → copy dist into OpenList/public/dist → go build.
+      # Output path is explicit so the artifact/release steps have a stable filename
+      # that includes OS/arch (linux-amd64 on this runner).
       - name: Build
         run: |
           chmod +x ./build.sh
           ./build.sh -o ./openlist-linux-amd64
 
+      # Keep the binary as a workflow artifact for main-branch / manual runs
+      # (downloadable from the Actions run UI even when no GitHub Release is created).
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -63,6 +89,9 @@ jobs:
           path: openlist-linux-amd64
           if-no-files-found: error
 
+      # Tag-only: create (or update) a GitHub Release for the pushed tag and attach the binary.
+      # generate_release_notes — auto-summarize commits since the previous tag.
+      # GITHUB_TOKEN — built-in token with contents:write from the job permissions above.
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
