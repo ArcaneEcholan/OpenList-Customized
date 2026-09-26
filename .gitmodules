@@ -1,0 +1,6 @@
+[submodule "OpenList"]
+	path = OpenList
+	url = git@github.com:OpenListTeam/OpenList.git
+[submodule "OpenList-Frontend"]
+	path = OpenList-Frontend
+	url = git@github.com:OpenListTeam/OpenList-Frontend.git

@@ -1,0 +1,43 @@
+# Dependencies & build outputs
+OpenList-Frontend/node_modules/
+OpenList-Frontend/dist/
+/openlist
+/openlist.exe
+OpenList/bin/
+OpenList/build/
+OpenList/output/
+OpenList/dist/
+
+# Embedded frontend build (regenerate with ./build.sh)
+OpenList/public/dist/**
+!OpenList/public/dist/README.md
+
+# Runtime / local data
+OpenList/data/
+OpenList/tmp/
+OpenList/log/
+OpenList/daemon/
+*.db
+*.bin
+*.test
+*.out
+*.syso
+
+# Env & secrets
+.env
+.env.*
+!OpenList-Frontend/.env.development
+!OpenList-Frontend/.env.production
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+.VSCodeCounter
+.codebuddy
+.test
+
+# Nested git leftovers / local backup of previous remotes
+.upstream-git-backup/
+**/.git.bak*/

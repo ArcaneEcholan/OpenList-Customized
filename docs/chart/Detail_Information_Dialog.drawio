@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="dX5zteVFE-5jBWAAveaS">
+    <mxGraphModel dx="992" dy="1095" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="560" width="500" x="240" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Detailed Info" vertex="1">
+          <mxGeometry height="30" width="60" x="250" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Driver" vertex="1">
+          <mxGeometry height="30" width="60" x="290" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="xxx" vertex="1">
+          <mxGeometry height="40" width="335" x="305" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Virtual Path" vertex="1">
+          <mxGeometry height="30" width="60" x="290" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="xxx" vertex="1">
+          <mxGeometry height="40" width="335" x="305" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Raw Path" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="xxx" vertex="1">
+          <mxGeometry height="40" width="335" x="305" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Size" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="xxx" vertex="1">
+          <mxGeometry height="40" width="335" x="305" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="xxx" vertex="1">
+          <mxGeometry height="40" width="335" x="305" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Future Other Fields" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="J8FdPPsDOCYgtFTRdFHH-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Copy" vertex="1">
+          <mxGeometry height="40" width="40" x="660" y="560" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
