@@ -42,6 +42,13 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# go build runs under OpenList/; make -o path absolute so a relative
+# value like ./openlist-linux-amd64 is not written inside that directory.
+if [[ "$OUTPUT" != /* ]]; then
+  OUTPUT="$ROOT/$OUTPUT"
+fi
+OUTPUT="$(realpath -m "$OUTPUT")"
+
 if [[ ! -d "$BACKEND" ]]; then
   echo "Error: backend not found at $BACKEND" >&2
   exit 1
