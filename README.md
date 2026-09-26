@@ -12,6 +12,11 @@ git clone --recurse-submodules <this-repo-url>
 ./build.sh
 ```
 
+## Docs
+
+- [Wiki](./docs/wiki/) — access control model and other monorepo notes
+- [Charts](./docs/chart/) — design diagrams
+
 ## Code modification workflow
 
 Do **feature work inside the submodules**, not as loose files in the parent.
